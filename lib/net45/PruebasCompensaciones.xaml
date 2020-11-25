@@ -12,7 +12,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>683.2,1431.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>684,1696.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PruebasCompensaciones_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -71,7 +71,7 @@
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PruebasCompensaciones" sap:VirtualizedContainerService.HintSize="518.4,1366.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PruebasCompensaciones" sap:VirtualizedContainerService.HintSize="518.4,1632" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
       <Variable x:TypeArguments="x:Int32" Name="Index" />
@@ -81,6 +81,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="476.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;---- Iniciando Process Pruebas ------&quot;]" />
     <Sequence DisplayName="Proceso Ingresos" sap:VirtualizedContainerService.HintSize="476.8,1088" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -199,15 +200,9 @@
                 <ui:CopyFile ContinueOnError="{x:Null}" Destination="[Path.Combine(Config(&quot;rutaResultadosEjecucion&quot;).ToString,nombreReporte)]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="384,160" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="Data\Input\FormatoResultados.xlsx" />
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Excel_AgregarAlReporte workflow" sap:VirtualizedContainerService.HintSize="384,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Excel\Excel_AgregarAlReporte.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="s:String[]" x:Key="in_Fila">
-                      <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{&quot;A&quot;,&quot;B&quot;,&quot;C&quot;}" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_Ruta">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.Combine(Config(&quot;rutaResultadosEjecucion&quot;).ToString,nombreReporte)" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_Hoja">
-                      <Literal x:TypeArguments="x:String">Resultados</Literal>
-                    </InArgument>
+                    <InArgument x:TypeArguments="s:String[]" x:Key="in_Fila">[{"A","B","C"}]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Ruta">[Path.Combine(Config("rutaResultadosEjecucion").ToString,nombreReporte)]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Hoja">Resultados</InArgument>
                     <InArgument x:TypeArguments="sd:DataRow" x:Key="in_DocumentoSAP" />
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
@@ -361,5 +356,6 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="476.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;---- Finalizando Process Pruebas ------&quot;]" />
   </Sequence>
 </Activity>
